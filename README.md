@@ -1,5 +1,4 @@
-
-#ASTR 400B Spring 2020 
+ASTR 400B Spring 2020 
 
 Instructor: Dr. Gurtina Besla
 
