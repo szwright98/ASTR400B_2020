@@ -1,16 +1,30 @@
+
+# coding: utf-8
+
+# In[1]:
+
 # Homework 3 Solutions
 # Computing the Mass of the Local Group
 # G. Besla
 
 
-# import relevant modules
+# In[2]:
+
+# import necessary modules
+# numpy provides powerful multi-dimensional arrays to hold and manipulate data
 import numpy as np
+# astropy provides unit system for astronomical calculations
 import astropy.units as u
+# import previous HW functions
 from ReadFile import Read
 
 
+# # Galaxy Mass
 
-def ComponentMass(filename,PType):
+# In[3]:
+
+
+def ComponentMass(filename, PType):
 # function to compute the mass of all particles of a given type for a given galaxy 
 # input:  filename (str) ,  Particle type (1,2,3)
 # output: Mass in units of 1e12 Msun. 
@@ -18,59 +32,86 @@ def ComponentMass(filename,PType):
      # read in the file 
     time, total, data = Read(filename)
     
-    #create an array to store indexes of particles of desired Ptype
-    index = np.where(data['type'] == PType)
-    
-    # create new arrays with the m of just the Ptype desired.
-    mnew = data['m'][index]*1e10*u.Msun
-  
-    
-    # sum the mass of all particles to get total
-    # round to 3 decimal places
-    mass = np.round(sum(mnew)/1e12,3)
+      # gather particles with the same type and sum up the mass
+    # we can directly round the result and adjust the units
+    mass = np.round(data[data['type']==PType]['m'].sum() * 1e10/1e12, 3)
     
     # return the mass 
     return mass
 
 
-
-# Printing Values for the Table
+# In[5]:
 
 # MW Mass
-MWHalo = ComponentMass("MW_000.txt",1)
-MWDisk = ComponentMass("MW_000.txt",2)
-MWBulge = ComponentMass("MW_000.txt",3)
+MW_halo = ComponentMass("MW_000.txt",1)
+MW_disk = ComponentMass("MW_000.txt",2)
+MW_bulge = ComponentMass("MW_000.txt",3)
 
-print("MW Halo Mass", MWHalo, "(x 10^12)")
-print("MW Disk Mass", MWDisk, "(x 10^12)" )
-print("MW Bulge Mass", MWBulge, "(x 10^12)")
-TotalMW = MWHalo + MWDisk + MWBulge
-print("Total MW", TotalMW, "(x 10^12)")
 
+# In[13]:
+
+print(f"MW halo Mass: {MW_halo:.3f} x 10^12 Msun") 
+print(f"MW disk Mass: {MW_disk:.3f} x 10^12 Msun")
+print(f"MW bulge Mass: {MW_bulge:.3f} x 10^12 Msun")
+
+
+# In[15]:
+
+# Total MW mass
+TotalMW = MW_halo + MW_disk + MW_bulge
+print(f"Total MW Mass: {TotalMW:.3f} x 10^12 Msun")
+
+
+# In[16]:
 
 # M31 Mass
-M31Halo = ComponentMass("M31_000.txt",1)
-M31Disk = ComponentMass("M31_000.txt",2)
-M31Bulge = ComponentMass("M31_000.txt",3)
+M31_halo = ComponentMass("M31_000.txt",1)
+M31_disk = ComponentMass("M31_000.txt",2)
+M31_bulge = ComponentMass("M31_000.txt",3)
 
-print("M31 Halo Mass", M31Halo, "(x 10^12)")
-print("M31 Disk Mass", M31Disk, "(x 10^12)")
-print("M31 Bulge Mass", M31Bulge, "(x 10^12)")
-TotalM31 = M31Halo + M31Disk + M31Bulge
-print("Total M31", TotalM31, "(x 10^12)")
 
+# In[17]:
+
+print(f"M31 halo Mass: {M31_halo:.3f} x 10^12 Msun") 
+print(f"M31 disk Mass: {M31_disk:.3f} x 10^12 Msun")
+print(f"M31 bulge Mass: {M31_bulge:.3f} x 10^12 Msun")
+
+
+# In[19]:
+
+# Total M31 Mass
+TotalM31 = M31_halo + M31_disk + M31_bulge
+print(f"Total M31 Mass: {TotalM31:.3f} x 10^12 Msun")
+
+
+# In[20]:
 
 # M33 Mass
-M33Halo = ComponentMass("M33_000.txt",1)
-M33Disk = ComponentMass("M33_000.txt",2)
+M33_halo = ComponentMass("M33_000.txt",1)
+M33_disk = ComponentMass("M33_000.txt",2)
 
-print("M33 Halo Mass", M33Halo, "(x 10^12)")
-print("M33 Disk Mass", M33Disk, "(x 10^12)")
-TotalM33 = M33Halo + M33Disk
-print("Total M33", TotalM33, "(x 10^12)")
 
-print("Local Group Mass", TotalMW + TotalM31 + TotalM33, "(x 10^12)")
+# In[21]:
 
+print(f"M33 halo Mass: {M33_halo:.3f} x 10^12 Msun") 
+print(f"M33 disk Mass: {M33_disk:.3f} x 10^12 Msun")
+
+
+# In[22]:
+
+# Total M33 Mass
+TotalM33 = M33_halo + M33_disk
+print(f"Total M33 Mass: {TotalM33:.3f} x 10^12 Msun")
+
+
+# In[23]:
+
+# Total Local Group Mass
+TotalLG  = TotalMW + TotalM31 + TotalM33
+print(f"Total Local Group Mass: {TotalLG:.3f} x 10^12 Msun")
+
+
+# In[ ]:
 
 
 
