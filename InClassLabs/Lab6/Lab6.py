@@ -1,9 +1,14 @@
 
+# coding: utf-8
+
+# In[ ]:
 
 
 # In Class Lab 6
 # Surface Brightness Profiles
 
+
+# In[ ]:
 
 
 # Load Modules
@@ -22,7 +27,7 @@ from MassProfile import MassProfile
 
 # # Lab 6: Sersic Profiles
 # 
-# In this lab we will use Homework 5 solutions to compute the mass profile of the Milky Way's bulge. 
+# In this lab we will use Homework 5 solutions to compute the mass profile of M31's bulge. 
 # We will turn the mass profile into a density profile and see if we can fit it reasonably well 
 # with a sersic profile. 
 
@@ -50,13 +55,15 @@ from MassProfile import MassProfile
 
 # # Part B
 # 
-# a) Create an instance of the MassProfile Class for the MW. Store it as a variable `MW`. 
+# Comput the surface density profile for te simulated bulge
+# 
+# a) Create an instance of the MassProfile Class for M31. Store it as a variable `M31`. 
 # 
 
 # b) Create an array of radii from 0.1 kpc to 30 kpc in increments of 0.1
 # 
 
-# c) Define a new array called `BulgeMass`, that uses the function `MassEnclosed` within MassProfile to compute themass profile of the bulge.  Get rid of astropy units in `BulgeMass` by adding `.value` 
+# c) Define a new array called `BulgeMass`, that uses the function `MassEnclosed` within MassProfile to compute the mass profile of the bulge.  Get rid of astropy units in `BulgeMass` by adding `.value` 
 # 
 
 # d) Compute the surface mass density profile for the simulated bulge and store it as an array called `BulgeI`. Assuming M/L ~ 1 this is also the surface brightness profile in Lsun/kpc^2
