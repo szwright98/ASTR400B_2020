@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# coding: utf-8
 
 # # Homework 7 Template
 # 
@@ -5,7 +7,7 @@
 # 
 # look for "****"
 
-
+# In[ ]:
 
 
 # import necessary modules
@@ -16,7 +18,9 @@ import matplotlib.pyplot as plt
 # astropy provides unit system and constants for astronomical calculations
 import astropy.units as u
 import astropy.constants as const
-
+# import Latex module so we can display the results with symbols
+from IPython.display import Latex
+get_ipython().run_line_magic('matplotlib', 'inline')
 
 # **** import CenterOfMass to determine the COM pos/vel of M33
 
@@ -26,7 +30,7 @@ import astropy.constants as const
 
 # # M33AnalyticOrbit
 
-
+# In[ ]:
 
 
 class M33AnalyticOrbit:
@@ -58,7 +62,7 @@ class M33AnalyticOrbit:
         
         
         ### store the DIFFERENCE between the vectors posM33 - posM31
-        # **** create two VECTORs self.r0 and self.v0 and have them equal the
+        # **** create two VECTORs self.r0 and self.v0 and have them be the
         # relative position and velocity VECTORS of M33
         
         
@@ -80,7 +84,7 @@ class M33AnalyticOrbit:
      
     
     
-    def HenquistAccel(****): # it is easiest if you take as an input the position VECTOR 
+    def HernquistAccel(****): # it is easiest if you take as an input the position VECTOR 
         """ **** ADD COMMENTS """
         
         ### **** Store the magnitude of the position vector
@@ -107,6 +111,7 @@ class M33AnalyticOrbit:
         #  multiply the whle thing by :   np.array([1,1,ZSTUFF]) 
         # where ZSTUFF are the terms associated with the z direction
         
+        
        
         return 
         # the np.array allows for a different value for the z component of the acceleration
@@ -126,15 +131,16 @@ class M33AnalyticOrbit:
     
     def LeapFrog(****): # take as input r and v, which are VECTORS. Assume it is ONE vector at a time
                                """ **** ADD COMMENTS """
-
         
         # predict the position at the next half timestep
         rhalf = 
         
-        # compute the velocity at the next timestep
+        # predict the final velocity at the next timestep using the acceleration field at the rhalf position 
         vnew = 
         
-        # compute the position at the next timestep
+        # predict the final position using the average of the current velocity and the final velocity
+        # this accounts for the fact that we don't know how the speed changes from the current timestep to the 
+        # next, so we approximate it using the average expected speed over the time interval dt. 
         rnew = 
         
         return # **** return the new position and velcoity vectors
@@ -164,7 +170,7 @@ class M33AnalyticOrbit:
             
             # **** advance the time by one timestep, dt
            
-            # **** store the new time in the first element of the ith row
+            # **** store the new time in the first column of the ith row
             orbit[****] =
             
             # ***** advance the position and velocity using the LeapFrog scheme
@@ -193,5 +199,4 @@ class M33AnalyticOrbit:
                    .format('t', 'x', 'y', 'z', 'vx', 'vy', 'vz'))
         
         # there is no return function
-        
 
