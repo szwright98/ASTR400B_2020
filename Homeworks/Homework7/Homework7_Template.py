@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
 
 # # Homework 7 Template
 # 
@@ -7,7 +5,6 @@
 # 
 # look for "****"
 
-# In[ ]:
 
 
 # import necessary modules
@@ -20,7 +17,6 @@ import astropy.units as u
 import astropy.constants as const
 # import Latex module so we can display the results with symbols
 from IPython.display import Latex
-get_ipython().run_line_magic('matplotlib', 'inline')
 
 # **** import CenterOfMass to determine the COM pos/vel of M33
 
